@@ -265,29 +265,5 @@ client.on('userUpdate', (oldUser, newUser, message) => {
 
 ////////////////////////////////////////////////////////////////////////////
 
-client.on("ready", () => {
-  client.guilds.cache.forEach(guild => {
-    guild.members.cache.forEach(async member => {
-      const fetch = await database.fetch(member.user.id);
-      if (!fetch) return;
-      if (Date.now() <= fetch.end || fetch) {
-        let kalan = fetch.end - Date.now();
-        let logkanal = ayarlar.mutelog;
-        let logChannel = await guild.channels.cache.get(logkanal);
-        setTimeout(() => {
-          const embed = new Discord.MessageEmbed().setAuthor(
-            fetch.yetkiliUsername,
-            fetch.yetkiliAvatarURL
-          );
-          return member.roles.remove(ayarlar.muterol).then(
-            () =>
-              database.delete(member.user.id) &&
-              logChannel.send(
-                embed.setColor("GREEN").setTitle("Susturulması açıldı!")
-                  .setDescription(`**x Yetkili**: <@!${fetch.yetkiliID}>
-**x Susturu açılan**: <@!${member.user.id}> `)
-              )
-          );
-        }, kalan);
-      }
-    });
+              
+ 
