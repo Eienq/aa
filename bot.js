@@ -121,11 +121,11 @@ client.login(ayarlar.token);
 //-----------------------TAG-ROL----------------------\\
 
 client.on("userUpdate", async (user, yeni) => {
-  var sunucu = client.guilds.cache.get(ayarlar.sunucuid); // Buraya Sunucu ID
+  var sunucu = client.guilds.cache.get(ayarlar.sunucuid);
   var uye = sunucu.members.cache.get(yeni.id);
-  var tag = ayarlar.tag; // Buraya Ekip Tag
-  var tagrol = ayarlar.tagrol; // Buraya Ekip Rolünün ID
-  var logKanali = ayarlar.taglog; // Loglanacağı Kanalın ID
+  var tag = ayarlar.tag; 
+  var tagrol = ayarlar.tagrol;
+  var logKanali = ayarlar.taglog; 
 
   if (!sunucu.members.cache.has(yeni.id) || yeni.bot || user.username === yeni.username) return;
   
@@ -151,16 +151,16 @@ client.on("userUpdate", async (user, yeni) => {
 //----------------------TAG-KONTROL----------------------\\     
 
 client.on("guildMemberAdd", member => {
-  let sunucuid = ayarlar.sunucuid; //Buraya sunucunuzun IDsini yazın
-  let tag = ayarlar.tag; //Buraya tagınızı yazın
-  let rol = ayarlar.tagrol; //Buraya tag alındığı zaman verilecek rolün IDsini yazın
+  let sunucuid = ayarlar.sunucuid; 
+  let tag = ayarlar.tag; 
+  let rol = ayarlar.tagrol; 
 if(member.user.username.includes(tag)){
 member.roles.add(rol)
   const tagalma = new Discord.MessageEmbed()
       .setColor("BLUE")
       .setDescription(`<@${member.id}> taglı olarak girdi!`)
       .setTimestamp()
-     client.channels.cache.get(ayarlar.taglog).send(tagalma) // taglog
+     client.channels.cache.get(ayarlar.taglog).send(tagalma) 
 }
 })
 
@@ -217,7 +217,7 @@ client.on('guildMemberAdd', member => {
     })
 })
  
-client.on('userUpdate', (oldUser, newUser) => {
+client.on('userUpdate', (oldUser, newUser, message) => {
     let yasaklitaglar = db.fetch(`yasaklitaglar_${message.guild.id}`)
     if(!yasaklitaglar) return db.set(`yasaklitaglar_${message.guild.id}`)
     if(oldUser.username !== newUser.username) {
