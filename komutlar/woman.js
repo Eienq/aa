@@ -49,17 +49,11 @@ if(!member) return message.channel.send(new MessageEmbed()
 
 
 let name = args[1]
-let age = Number(args[2])
 
 
   if(!name) return message.channel.send(new MessageEmbed()
 .setAuthor(message.author.tag, message.author.avatarURL({dynamic:true}))
 .setDescription(`**Bir isim belirtmelisin.**`)
-.setColor('#b76e79')).then(x => x.delete({timeout: 5000}));
-
-  if(!age) return message.channel.send(new MessageEmbed()
-.setAuthor(message.author.tag, message.author.avatarURL({dynamic:true}))
-.setDescription(`**Bir yaş belirtmelisin.**`)
 .setColor('#b76e79')).then(x => x.delete({timeout: 5000}));
 
   if(member.id === message.author.id) return message.channel.send(new MessageEmbed()
@@ -91,7 +85,7 @@ db.add(`auth.${message.author.id}.toplam`, 1)
 
 let alldata = db.fetch(`auth.${message.author.id}.toplam`)
 
-await member.setNickname(`${sunucutag} ${name} ' ${age}`)
+await member.setNickname(`${sunucutag} ${name}`)
 
  await    member.roles.add(woman)
 
@@ -117,7 +111,7 @@ let time = timereplace.replace(/y/, ' yıl').replace(/d/, ' gün').replace(/s/, 
 
 message.channel.send(new MessageEmbed()
 .setAuthor(message.author.tag, message.author.avatarURL({dynamic:true}))
-.setDescription(`**${member} Üyesinin Kayıtı Başarılı Sevgili Yetkilim** \n\n **${woman}, ${woman2} Rolleri Verdim.** \n \`${sunucutag} ${name} ' ${age}\` **Olarak ismini güncelledim.**`)
+.setDescription(`**${member} Üyesinin Kayıtı Başarılı Sevgili Yetkilim** \n\n **${woman} Rolleri Verdim.** \n \`${sunucutag} ${name}\` **Olarak ismini güncelledim.**`)
 .setFooter(`Toplam kayıtların: ${alldata}`)               
 .setColor('#b76e79'))
 .then(x => x.delete({timeout: 5000}));
@@ -133,8 +127,8 @@ log.send(new MessageEmbed()
 .setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }))
 .addField(`Yetkili`, `${message.author}`, true)
 .addField(`Yeni Üye`, `${member}`, true)
-.addField(`Verilen Roller`, `${woman}, ${woman2}`, true)
-.addField(`İsim`, `\`${sunucutag} ${name} ' ${age}\``, true)
+.addField(`Verilen Roller`, `${woman}`, true)
+.addField(`İsim`, `\`${sunucutag} ${name}\``, true)
 .addField(`Kayıt Edildiği Kanal`, `\`${message.channel.name}\``, true)
 .addField(`Yetkili Toplam Kayıt`, `\`${alldata}\``, true)
 .addField(`Kayıt Saati`, `\`${kayıtsaat}\``, true)
@@ -145,7 +139,6 @@ db.push(`isim.${message.guild.id}`,
 {
 userID: member.id,
 isim: name,
-yas: age,
 role: woman.id
 }
 )}
