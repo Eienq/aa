@@ -116,7 +116,6 @@ message.channel.send(new MessageEmbed()
 .setDescription(`**${member} Üyesinin Kayıtı Başarılı İle Yapıldı** \n\n **${man} Rolleri Verdim.** \n \`${sunucutag} ${name} \` **Olarak ismini güncelledim.**`)
 .setFooter(`Toplam kayıtların: ${alldata}`)               
 .setColor('#80a3dd'))
-.then(x => x.delete({timeout: 5000}));
 message.react("810084606971609088")
 
 
