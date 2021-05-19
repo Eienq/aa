@@ -267,3 +267,20 @@ client.on('userUpdate', (oldUser, newUser, message) => {
 
               
  
+
+
+
+client.on("guildMemberAdd", member => {  
+  const kanal = member.guild.channels.cache.find(r => r.id === "809387096284200980"); //HOŞGELDİN MESAJI ATILACAĞI KANAL IDSINI GİRİN ÖRNEĞİN UNREGİSTER CHATİ
+    
+    let user = client.users.cache.get(member.id);
+    require("moment-duration-format");
+      const kurulus = new Date().getTime() - user.createdAt.getTime();  
+  const gecen = moment.duration(kurulus).format(`YY **[Yıl,]** DD **[Gün,]** HH **[Saat,]** mm **[Dakika,]** ss **[Saniye]**`) 
+   
+    var kontrol;
+  if (kurulus < 1296000000) kontrol = 'CARPIEMOJIDSI'
+  if (kurulus > 1296000000) kontrol = 'TIKEMOJİIDSI'
+  moment.locale("tr");
+  kanal.send(":tada: Sunucumuza Hoş Geldin ! <@" + member + "> \n\n Hesabın "+ gecen +" Önce Oluşturulmuş "+kontrol+" \n\n Sunucu kurallarımız <809390200815747092> kanalında belirtilmiştir. Unutma sunucu içerisinde ki ceza işlemlerin kuralları okuduğunu varsayarak gerçekleştirilecek. \n\n Seninle beraber **" + member.guild.memberCount + "** kişi olduk , Tagımızı alarak bizlere destek olabilirsin , Kayıt olmak için teyit odalarına girip ses teyit vermen gerekiyor <@&YETKILIROLID> seninle ilgilenecektir  İyi eğlenceler !")
+  });

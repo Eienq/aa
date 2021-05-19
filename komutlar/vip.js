@@ -14,7 +14,7 @@ if(![ayarlar.allcommands].some(role => message.member.roles.cache.get(role)) && 
  member.roles.add(vip)
   let embed = new Discord.MessageEmbed()
   .setColor('RANDOM')
-  .setDescription(`${member} kişisi artık  <@&viprolid> !`)
+  .setDescription(`${member} kişisi artık <@&` + ayarlar.vip + `>`)
   .setTimestamp()
 message.channel.send(embed).then(x => x.delete({timeout: 5000}));
 } 
