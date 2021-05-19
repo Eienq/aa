@@ -1,26 +1,16 @@
+const fs = require('fs');
+const http = require('http');
+const express = require('express');
+const moment = require('moment');
+const ayarlar = require('./ayarlar.json');
+const app = express();
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const ayarlar = require('./ayarlar.json');
-const chalk = require('chalk');
-const moment = require('moment');
-var Jimp = require('jimp');
-const { Client, Util } = require('discord.js');
-const fs = require('fs');
-const db = require('quick.db');
-const database = require("quick.db");
-const express = require('express');
-require('./util/eventLoader.js')(client);
-const path = require('path');
-const snekfetch = require('snekfetch');
-const ms = require('ms');
-
-
-var prefix = ayarlar.prefix;
-
-
 const log = message => {
-    console.log(`${message}`);
+  console.log(` ${message}`);
 };
+require('./util/eventLoader.js')(client);
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -77,6 +67,7 @@ client.load = command => {
 
 
 
+
 client.unload = command => {
     return new Promise((resolve, reject) => {
         try {
@@ -93,11 +84,11 @@ client.unload = command => {
     });
 };
 
+
 client.elevation = message => {
     if (!message.guild) {
         return;
     }
-
     let permlvl = 0;
     if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
     if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
@@ -105,171 +96,25 @@ client.elevation = message => {
     return permlvl;
 };
 
-var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
-// client.on('debug', e => {
-//   console.log(chalk.bgBlue.green(e.replace(regToken, 'that was redacted')));
-// });
-client.on('warn', e => {
-    console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
-});
-client.on('error', e => {
-    console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
-});
+//oto isim
+client.on("guildMemberAdd", async member => {
 
-client.login(process.env.token);
+  member.setNickname(' İsim | Yaş')
+ member.roles.add(ayarlar.kayitsizRolu)
+ });
 
-//-----------------------TAG-ROL----------------------\\
+ ///bot ses
+ client.on("ready", () => {
+    let sesegir = ayarlar.botses
+    client.channels.cache.get(sesegir).join();
+    });  
+   
+//Hoşgeldin Mesajı
 
-client.on("userUpdate", async (user, yeni) => {
-  var sunucu = client.guilds.cache.get(ayarlar.sunucuid);
-  var uye = sunucu.members.cache.get(yeni.id);
-  var tag = ayarlar.tag; 
-  var tagrol = ayarlar.tagrol;
-  var logKanali = ayarlar.taglog; 
-
-  if (!sunucu.members.cache.has(yeni.id) || yeni.bot || user.username === yeni.username) return;
-  
-  if ((yeni.username).includes(tag) && !uye.roles.cache.has(tagrol)) {
-    try {
-      await uye.roles.add(tagrol);
-      await client.channels.cache.get(logKanali).send(new Discord.MessageEmbed().setColor('GREEN').setDescription(`${yeni} adlı üye tagımızı alarak aramıza katıldı.`));
-    } catch (err) { console.error(err) };
-  };
-  
-  if (!(yeni.username).includes(tag) && uye.roles.cache.has(tagrol)) {
-    try {
-      await uye.roles.remove(uye.roles.cache.filter(rol => rol.position >= sunucu.roles.cache.get(tagrol).position));
-      await client.channels.cache.get(logKanali).send(new Discord.MessageEmbed().setColor('RED').setDescription(`${yeni} adlı üye tagımızı bırakarak aramızdan ayrıldı.`));
-    } catch(err) { console.error(err) };
-  };
-});
-
-//
-// Tag aldığında rol verir, tag çıkardığında tag rolünü ve onun üstündeki her rolü alır!
-//
-
-//----------------------TAG-KONTROL----------------------\\     
-
-client.on("guildMemberAdd", member => {
-  let sunucuid = ayarlar.sunucuid; 
-  let tag = ayarlar.tag; 
-  let rol = ayarlar.tagrol; 
-if(member.user.username.includes(tag)){
-member.roles.add(rol)
-  const tagalma = new Discord.MessageEmbed()
-      .setColor("BLUE")
-      .setDescription(`<@${member.id}> taglı olarak girdi!`)
-      .setTimestamp()
-     client.channels.cache.get(ayarlar.taglog).send(tagalma) 
-}
-})
-
-/////////////////////////////////////////////////////////////
-
-client.on("ready", async function() {
-    client.channels.cache.get(ayarlar.botkanal).join()
-    .catch(err => {
-    throw err;
-    })
-    })
-
-
-////////////////////////////////////////////////////////////// Snipe
-
-
-client.on("messageDelete", async(message) => {
-    if (message.channel.type === "dm" || !message.guild || message.author.bot) return;
-  let snipe = {
-  mesaj: message.content,
-  mesajyazan: message.author.id,
-  ytarihi: message.createdTimestamp,
-  starihi: Date.now(), 
-  kanal: message.channel.id
-  }
-  await db.set(`snipe.${message.guild.id}`, snipe)
-  }); 
-  
-  
-
-
-//////////////////////////////////////////////////////////////////////
-
-
-let yasaktag = ayarlar.yasaktag
-let unregister = ayarlar.unregister
- 
-client.on('guildMemberAdd', member => {
-    let yasaklitaglar = db.fetch(`yasaklitaglar_${member.guild.id}`)
-    if(!yasaklitaglar) return db.set(`yasaklitaglar_${member.guild.id}`)
-    yasaklitaglar.forEach(tag => {
-        if(member.user.username.includes(tag)) {
-            try {
-                db.add(`yasaklitagengel_${member.guild.id}_${tag}`, 1)
-                member.send(`${tag} Sunucumuzda ki Yasaklı Taglar Arasındadır Bu Tagı Bırakmadığın Sürece Sunucumuza Erişeyemeceksin.`)
-                } catch (e) {
-                console.log(e)
-            }
-            member.roles.cache.forEach(rol => {
-                member.roles.remove(rol.id)
-              })
-              member.roles.add(yasaktag)
-        }
-    })
-})
- 
-client.on('userUpdate', (oldUser, newUser, message) => {
-    let yasaklitaglar = db.fetch(`yasaklitaglar_${message.guild.id}`)
-    if(!yasaklitaglar) return db.set(`yasaklitaglar_${message.guild.id}`)
-    if(oldUser.username !== newUser.username) {
-        let member = client.guilds.cache.get(message.guild.id).members.cache.get(oldUser.id)
-        yasaklitaglar.forEach(tag => {
-            if(oldUser.username.includes(tag) && !newUser.username.includes(tag)) {
-                member.roles.cache.forEach(rol => {
-                    member.roles.remove(rol.id)
-                  })
-                  member.roles.add(unregister)
-                try {
-                    member.send(`${tag} Tagını Adından Çıkardığın İçin Teşekkür Ederiz Eğer Adında Başka Yasaklı Tag Yoksa Kayıtsız'a Atılacaksın.`)
-               } catch (e) {
-                   console.log(e)
-               }
-               return;
-           }
-           if(!oldUser.username.includes(tag) && newUser.username.includes(tag)) {
-               member.roles.cache.forEach(rol => {
-                   member.roles.remove(rol.id)
-               })
-               member.roles.add(yasaktag)
-               try {
-                   member.send(`${tag} Tagı Sunucumuzun Yasaklı Tagları Arasında Olduğundan Dolayı Sunucumuzun Kanallarına Erişimin Engellendi.`)
-               } catch (e) {
-                   console.log(e)
-               }
-               return;
-           }
-       })
-       setTimeout( () => {
-       yasaklitaglar.forEach(tag => {
-           if(newUser.username.includes(tag)) {
-               member.roles.cache.forEach(rol => {
-                   member.roles.remove(rol.id)
-                 })
-                 member.roles.add(yasaktag)
-           }
-           return;
-       })
-       }, 1000)
-   }
-})
-
-
-////////////////////////////////////////////////////////////////////////////
-
-              
- //-----------------------HOŞ-GELDİN-MESAJI----------------------\\     
+//-----------------------HOŞ-GELDİN-MESAJI----------------------\\     
 
 client.on("guildMemberAdd", member => {  
-    const register = "** <@&838744201927720971> kayıt olmayı bekleyen birisi var! <@" + member + "> **"
+    const register = "** <@&809389184179240960> kayıt olmayı bekleyen birisi var! <@" + member + "> **"
     var üyesayısı = member.guild.members.cache.size.toString().replace(/ /g, "    ")
     var üs = üyesayısı.match(/([0-9])/g)
     üyesayısı = üyesayısı.replace(/([a-zA-Z])/g, "bilinmiyor").toLowerCase()
@@ -291,10 +136,10 @@ client.on("guildMemberAdd", member => {
   const kanal = member.guild.channels.cache.find(r => r.id === "809387096284200980"); //kANALID
   let user = client.users.cache.get(member.id);
     var hggif = [
-        "https://cdn.discordapp.com/attachments/832803209009561610/844627771921268816/tumblr_ns4zu6jco71ub8ogio1_500.gif",
-        "https://cdn.discordapp.com/attachments/832803209009561610/844627777675722763/1489759175_1442530660_large.gif",
-        "https://cdn.discordapp.com/attachments/832803209009561610/844627774672207882/6095715.gif",
-        "https://cdn.discordapp.com/attachments/832803209009561610/844627779202711562/1471953914_naruto_gif_2.gif"
+        "https://i.pinimg.com/originals/2c/43/ac/2c43acd8c41ee853cf9fbb04960e4fa6.gif",
+        "https://cdn.discordapp.com/attachments/784443098730201094/830093748457177108/kedi_gif.gif",
+        "https://cdn.discordapp.com/attachments/738105499014135909/773981744226762762/181dd8d229025a4c71a2faf4fa77da7b.gif",
+        "https://ariuscdn.suleymanbal.com.tr/resim/gif/5.gif"
     ] //Böyle arttırırsın gifleri
     let randomgif = hggif[Math.floor(Math.random() * hggif.length)]
   require("moment-duration-format");
@@ -310,9 +155,38 @@ if (kurulus > 1296000000) kontrol = '<a:rainbow:838755853271564358> • Hesap Du
     .setDescription("**<a:rainbow:838755853271564358> • Sunucuya hoş geldin\n\n<a:rainbow:838755853271564358> •<@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:rainbow:838755853271564358> • Ses kanalına girerek kayıt olabilirsin. \n\n<a:rainbow:838755853271564358> • Hesabın Açılış Süresi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
     .setImage(randomgif)
     .setTimestamp() 
-    .setFooter('SUBASHI REGISTRY') 
+    .setFooter('Erdem Çakıroğlu 💙 Registery') 
    kanal.send(registerlog)
    kanal.send(register)   
   });
 
 
+
+///TAG ALANA ROL///
+client.on("userUpdate", async (oldUser, newUser) => {  
+  if (oldUser.username !== newUser.username) {
+          let tag = ayarlar.tag
+          let sunucu = ayarlar.sunucu
+          let kanal = ayarlar.tagkanal 
+          let rol = ayarlar.tagrol
+
+          
+
+  try {
+
+  if (newUser.username.includes(tag) && !client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.cache.has(rol)) {
+  await client.channels.cache.get(kanal).send(new Discord.MessageEmbed().setColor("RED").setDescription(` ${newUser} \`${tag}\` Tagımızı Aldığı İçin <@&${rol}> Rolünü Verdim`));
+  await client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.add(rol);  
+  }
+  if (!newUser.username.includes(tag) && client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.cache.has(rol)) {
+  await client.channels.cache.get(kanal).send(new Discord.MessageEmbed().setColor("RED").setDescription(` ${newUser} \`${tag}\` Tagımızı Çıkardığı İçin <@&${rol}> Rolünü Aldım`));
+  await client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.remove(rol);
+  }  
+} catch (e) {
+console.log(`Bir hata oluştu! ${e}`)
+ }
+}  
+});
+
+
+client.login(process.env.token)

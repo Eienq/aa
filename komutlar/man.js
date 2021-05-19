@@ -3,7 +3,7 @@ const mongodb = require("mongodb");
 const ms = require("ms");
 const moment = require("moment");
 const db = require("quick.db")
-const { parseZone } = require("moment");
+const { parseZone } = require("moment")
 const ayarlar = require('../ayarlar.json');
 
 module.exports.run = async (client, message, args) => {
