@@ -113,7 +113,7 @@ let time = timereplace.replace(/y/, ' yıl').replace(/d/, ' gün').replace(/s/, 
 
 message.channel.send(new MessageEmbed()
 .setAuthor(message.author.tag, message.author.avatarURL({dynamic:true}))
-.setDescription(`**${member} Üyesinin Kayıtı Başarılı Sevgili Yetkilim** \n\n **${man} Rolleri Verdim.** \n \`${sunucutag} ${name} \` **Olarak ismini güncelledim.**`)
+.setDescription(`**${member} Üyesinin Kayıtı Başarılı İle Yapıldı** \n\n **${man} Rolleri Verdim.** \n \`${sunucutag} ${name} \` **Olarak ismini güncelledim.**`)
 .setFooter(`Toplam kayıtların: ${alldata}`)               
 .setColor('#80a3dd'))
 .then(x => x.delete({timeout: 5000}));

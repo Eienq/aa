@@ -51,7 +51,7 @@ message.channel.send(embed)
  exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['avatar', "av", "pp", "foto"],
+  aliases: ['avatar', "a", "pp", "foto"],
   permLevel: 0
 };
 
