@@ -1,43 +1,43 @@
 {
   
-  "prefix" : "",
-  "sahip" : "",
-  "token" : "",
+  "prefix" : ".",
+  "sahip" : "376747953580146689",
   
-  "sunucuid": "",
   
-  "register": "",
-  "ilkrol": "",
-  "allcommands": "",
-  "chatsorumlusu": "",
-  "muteci": "",
-  "jailci": "",
+  "sunucuid": "808764846144356442",
   
-  "erkek": "",
-  "erkek2": "",
-  "kadın": "",
-  "kadın2": "",
-  "unregister": "",
-  "vip": "",
+  "register": "809389184179240960",
+  "ilkrol": "839672304375693312",
+  "allcommands": "825900495292989461",
+  "chatsorumlusu": "838030644163510272",
+  "muteci": "832809313365000202",
+  "jailci": "832809366058565643",
   
-  "tag": "",
+  "erkek": "809383026190057482",
+  "erkek2": "809383026190057482",
+  "kadın": "809382727652474880",
+  "kadın2": "809382727652474880",
+  "unregister": "809386132428423169",
+  "vip": "809383143626637362",
+  
+  "tag": "†",
   "tagrol": "",
 
   "taglog": "",
-  "nicklog": "",
-  "kayıtlog": "",
+  "nicklog": "843618416355180594",
+  "kayıtlog": "843618416355180594",
   "ytallog": "",
-  "mutelog": "",
-  "jaillog": "",
+  "mutelog": "832809170930499614",
+  "jaillog": "832809211381547018",
   
-  "muterol": "",
+  "muterol": "843631482824163348",
   "cezalı": "",
   
-  "botkanal": "",
-  "chat": "",
+  "botkanal": "843990327920689152",
+  "chat": "843990327920689152",
   
-  "ready": "",
+  "ready": "SUBASHI-atahan",
 
-  "footer": ""
+  "footer": "atahan"
   
 }
