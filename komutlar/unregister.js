@@ -15,7 +15,7 @@ member.roles.cache.filter(r => r.id).map(r => {digerroller.push(r.id)})
 member.roles.remove(digerroller)
 
 await member.roles.add(ayarlar.unregister)
-await member.setNickname(`İsim ' Yaş`) // kayıtsıza atınca isim yaş yapan kısım
+await member.setNickname(`† Kayıtsız`)
 
 
 message.channel.send(new MessageEmbed().setDescription(`${member} Adlı Kullanıcı ${message.author} Tarafından Kayıtsız'a Atıldı !`)).then(msg => msg.delete({timeout: 4000}))}

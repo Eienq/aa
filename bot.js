@@ -152,7 +152,7 @@ if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512>  Hesap Durumu: G
       const registerlog = new Discord.MessageEmbed()
     .setColor("#00ffe3")
     .setThumbnail(user.avatarURL({dynamic: true}))
-    .setDescription("**<a:wait:844646078452465666> • Sunucuya hoş geldin\n\n<a:kristal:844646068193198080> <@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:bekleme:844646089805791272>  Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<a:tik:844646041462112326> Hesabın Oluşturulma Tarihi: " + moment(member.user.createdAt).format("`YYYY/DD/MMMM/dddd`") +  "\n\n"  + kontrol + " **\n")
+    .setDescription("**<a:wait:844646078452465666> • Sunucuya hoş geldin\n\n<a:kristal:844646068193198080> <@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:bekleme:844646089805791272>  Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<a:tik:844646041462112326> Hesabın Oluşturulma Tarihi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
     .setImage(randomgif)
     .setTimestamp() 
     .setFooter('SUBASHI') 
@@ -187,6 +187,7 @@ console.log(`Bir hata oluştu! ${e}`)
  }
 }  
 });
+
 
 
 client.login(process.env.token)

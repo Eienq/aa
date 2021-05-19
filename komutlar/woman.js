@@ -45,7 +45,6 @@ if(!member) return message.channel.send(new MessageEmbed()
 .setAuthor(message.author.tag, message.author.avatarURL({dynamic:true}))
 .setDescription(`**${message.author} bir kullanıcı belirt.**`)
 .setColor('#b76e79'))
-.then(x => x.delete({timeout: 4000}));
 
 
 let name = args[1]
@@ -114,7 +113,6 @@ message.channel.send(new MessageEmbed()
 .setDescription(`**${member} Üyesinin Kayıtı Başarılı Sevgili Yetkilim** \n\n **${woman} Rolleri Verdim.** \n \`${sunucutag} ${name}\` **Olarak ismini güncelledim.**`)
 .setFooter(`Toplam kayıtların: ${alldata}`)               
 .setColor('#b76e79'))
-.then(x => x.delete({timeout: 5000}));
 message.react("810084606971609088")
 
 
