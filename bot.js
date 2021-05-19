@@ -146,13 +146,13 @@ client.on("guildMemberAdd", member => {
     const kurulus = new Date().getTime() - user.createdAt.getTime();  
  
   var kontrol;
-if (kurulus < 1296000000) kontrol = '<:peperage:833034273639759893> • Hesap Durumu: Güvenli Değil! <a:arp:844646056947744777> **'
-if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512> • Hesap Durumu: Güvenli! <a:mavitik:844648077906018386>'
+if (kurulus < 1296000000) kontrol = '<:peperage:833034273639759893>  Hesap Durumu: Güvenli Değil! <a:arp:844646056947744777> **'
+if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512>  Hesap Durumu: Güvenli! <a:mavitik:844648077906018386>'
     moment.locale("tr");
       const registerlog = new Discord.MessageEmbed()
     .setColor("#00ffe3")
     .setThumbnail(user.avatarURL({dynamic: true}))
-    .setDescription("**<a:wait:844646078452465666> • Sunucuya hoş geldin\n\n<a:kristal:844646068193198080> <@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:bekleme:844646089805791272>  Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<:yeey:840247077341888512> • Hesabın Oluşturulma Tarihi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
+    .setDescription("**<a:wait:844646078452465666> • Sunucuya hoş geldin\n\n<a:kristal:844646068193198080> <@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:bekleme:844646089805791272>  Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<a:tik:844646041462112326> Hesabın Oluşturulma Tarihi: " + moment(member.user.createdAt).format("`YYYY / DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
     .setImage(randomgif)
     .setTimestamp() 
     .setFooter('SUBASHI') 
