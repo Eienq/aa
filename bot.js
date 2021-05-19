@@ -99,7 +99,7 @@ client.elevation = message => {
 //oto isim
 client.on("guildMemberAdd", async member => {
 
-  member.setNickname(' İsim | Yaş')
+  member.setNickname('İsim')
  member.roles.add(ayarlar.kayitsizRolu)
  });
 
@@ -114,7 +114,7 @@ client.on("guildMemberAdd", async member => {
 //-----------------------HOŞ-GELDİN-MESAJI----------------------\\     
 
 client.on("guildMemberAdd", member => {  
-    const register = "** <@&809389184179240960> kayıt olmayı bekleyen birisi var! <@" + member + "> **"
+    const register = "**  kayıt olmayı bekleyen birisi var! <@" + member + "> **"
     var üyesayısı = member.guild.members.cache.size.toString().replace(/ /g, "    ")
     var üs = üyesayısı.match(/([0-9])/g)
     üyesayısı = üyesayısı.replace(/([a-zA-Z])/g, "bilinmiyor").toLowerCase()
@@ -136,26 +136,26 @@ client.on("guildMemberAdd", member => {
   const kanal = member.guild.channels.cache.find(r => r.id === "809387096284200980"); //kANALID
   let user = client.users.cache.get(member.id);
     var hggif = [
-        "https://i.pinimg.com/originals/2c/43/ac/2c43acd8c41ee853cf9fbb04960e4fa6.gif",
-        "https://cdn.discordapp.com/attachments/784443098730201094/830093748457177108/kedi_gif.gif",
-        "https://cdn.discordapp.com/attachments/738105499014135909/773981744226762762/181dd8d229025a4c71a2faf4fa77da7b.gif",
-        "https://ariuscdn.suleymanbal.com.tr/resim/gif/5.gif"
+        "https://cdn.discordapp.com/attachments/832803209009561610/844627779202711562/1471953914_naruto_gif_2.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844627777675722763/1489759175_1442530660_large.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844627771921268816/tumblr_ns4zu6jco71ub8ogio1_500.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844627774672207882/6095715.gif"
     ] //Böyle arttırırsın gifleri
     let randomgif = hggif[Math.floor(Math.random() * hggif.length)]
   require("moment-duration-format");
     const kurulus = new Date().getTime() - user.createdAt.getTime();  
  
   var kontrol;
-if (kurulus < 1296000000) kontrol = '<a:rainbow:838755853271564358> • Hesap Durumu: Güvenli Değil! <a:hyir:797147979801821204> **'
-if (kurulus > 1296000000) kontrol = '<a:rainbow:838755853271564358> • Hesap Durumu: Güvenli! <a:onays:797147979797495879> **'
+if (kurulus < 1296000000) kontrol = '<<:yeey:840247077341888512> • Hesap Durumu: Güvenli Değil! <a:hyir:797147979801821204> **'
+if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512> • Hesap Durumu: Güvenli! <a:onays:797147979797495879> **'
     moment.locale("tr");
       const registerlog = new Discord.MessageEmbed()
     .setColor("#00ffe3")
     .setThumbnail(user.avatarURL({dynamic: true}))
-    .setDescription("**<a:rainbow:838755853271564358> • Sunucuya hoş geldin\n\n<a:rainbow:838755853271564358> •<@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:rainbow:838755853271564358> • Ses kanalına girerek kayıt olabilirsin. \n\n<a:rainbow:838755853271564358> • Hesabın Açılış Süresi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
+    .setDescription("**<:yeey:840247077341888512> • Sunucuya hoş geldin\n\n<:yeey:840247077341888512> •<@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<:yeey:840247077341888512> • Ses kanalına girerek kayıt olabilirsin. \n\n<:yeey:840247077341888512> • Hesabın Açılış Süresi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
     .setImage(randomgif)
     .setTimestamp() 
-    .setFooter('Erdem Çakıroğlu 💙 Registery') 
+    .setFooter('SUBASHI') 
    kanal.send(registerlog)
    kanal.send(register)   
   });
