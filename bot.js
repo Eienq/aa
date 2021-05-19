@@ -121,16 +121,16 @@ client.on("guildMemberAdd", member => {
     if(üs) {
       üyesayısı = üyesayısı.replace(/([0-9])/g, d => {
         return {
-'0': `<a:0x:797156909283016754>`,
-'1': `<a:1x:797156909668892682>`,
-'2': `<a:2x:797156909689995305>`,
-'3': `<a:3x:797157222097616926>`,
-'4': `<a:4x:797157222186090534>`,                       
-'5': `<a:5x:797157221325996033>`,
-'6': `<a:6x:797157223020232744>`,
-'7': `<a:7x:797157221486034974>`,
-'8': `<a:8x:797157222198411324>`,
-'9': `<a:9x:797157222434078730>`}[d];
+'0': `<a:0_:844641926107496509>`,
+'1': `<a:1_:844641937088446514>`,
+'2': `<a:2_:844641946098073651>`,
+'3': `<a:3_:844641955132342309>`,
+'4': `<a:4_:844641966401781810>`,                       
+'5': `<a:5_:844641975474585680>`,
+'6': `<a:6_:844641984294682655>`,
+'7': `<a:7_:844641993417424909>`,
+'8': `<a:8_:844642002267930685>`,
+'9': `<a:9_:844642010291765270>`}[d];
         })
       }
   const kanal = member.guild.channels.cache.find(r => r.id === "809387096284200980"); //kANALID
@@ -146,13 +146,13 @@ client.on("guildMemberAdd", member => {
     const kurulus = new Date().getTime() - user.createdAt.getTime();  
  
   var kontrol;
-if (kurulus < 1296000000) kontrol = '<<:yeey:840247077341888512> • Hesap Durumu: Güvenli Değil! <a:hyir:797147979801821204> **'
-if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512> • Hesap Durumu: Güvenli! <a:onays:797147979797495879> **'
+if (kurulus < 1296000000) kontrol = '<:peperage:833034273639759893> • Hesap Durumu: Güvenli Değil! <a:arp:844646056947744777> **'
+if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512> • Hesap Durumu: Güvenli! <a:mavitik:844648077906018386>'
     moment.locale("tr");
       const registerlog = new Discord.MessageEmbed()
     .setColor("#00ffe3")
     .setThumbnail(user.avatarURL({dynamic: true}))
-    .setDescription("**<:yeey:840247077341888512> • Sunucuya hoş geldin\n\n<:yeey:840247077341888512> •<@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<:yeey:840247077341888512> • Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<:yeey:840247077341888512> • Hesabın Açılış Süresi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
+    .setDescription("**<a:wait:844646078452465666> • Sunucuya hoş geldin\n\n<a:kristal:844646068193198080> <@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:bekleme:844646089805791272>  Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<:yeey:840247077341888512> • Hesabın Oluşturulma Tarihi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
     .setImage(randomgif)
     .setTimestamp() 
     .setFooter('SUBASHI') 
