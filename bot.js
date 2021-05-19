@@ -114,7 +114,7 @@ client.on("guildMemberAdd", async member => {
 //-----------------------HOŞ-GELDİN-MESAJI----------------------\\     
 
 client.on("guildMemberAdd", member => {  
-    const register = "**  kayıt olmayı bekleyen birisi var! <@" + member + "> **"
+    const register = "** <@&809389184179240960> kayıt olmayı bekleyen birisi var! <@" + member + "> **"
     var üyesayısı = member.guild.members.cache.size.toString().replace(/ /g, "    ")
     var üs = üyesayısı.match(/([0-9])/g)
     üyesayısı = üyesayısı.replace(/([a-zA-Z])/g, "bilinmiyor").toLowerCase()
@@ -152,7 +152,7 @@ if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512> • Hesap Durumu
       const registerlog = new Discord.MessageEmbed()
     .setColor("#00ffe3")
     .setThumbnail(user.avatarURL({dynamic: true}))
-    .setDescription("**<:yeey:840247077341888512> • Sunucuya hoş geldin\n\n<:yeey:840247077341888512> •<@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<:yeey:840247077341888512> • Ses kanalına girerek kayıt olabilirsin. \n\n<:yeey:840247077341888512> • Hesabın Açılış Süresi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
+    .setDescription("**<:yeey:840247077341888512> • Sunucuya hoş geldin\n\n<:yeey:840247077341888512> •<@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<:yeey:840247077341888512> • Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<:yeey:840247077341888512> • Hesabın Açılış Süresi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
     .setImage(randomgif)
     .setTimestamp() 
     .setFooter('SUBASHI') 
