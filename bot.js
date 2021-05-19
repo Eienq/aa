@@ -96,12 +96,14 @@ client.elevation = message => {
     return permlvl;
 };
 
-//oto isim
+// İsim Sistemi //
+
 client.on("guildMemberAdd", async member => {
 
-  member.setNickname('İsim')
+  member.setNickname('†  Kayıtsız')
  member.roles.add(ayarlar.kayitsizRolu)
- });
+ }); 
+
 
  ///bot ses
  client.on("ready", () => {
@@ -139,7 +141,12 @@ client.on("guildMemberAdd", member => {
         "https://cdn.discordapp.com/attachments/832803209009561610/844627779202711562/1471953914_naruto_gif_2.gif",
         "https://cdn.discordapp.com/attachments/832803209009561610/844627777675722763/1489759175_1442530660_large.gif",
         "https://cdn.discordapp.com/attachments/832803209009561610/844627771921268816/tumblr_ns4zu6jco71ub8ogio1_500.gif",
-        "https://cdn.discordapp.com/attachments/832803209009561610/844627774672207882/6095715.gif"
+        "https://cdn.discordapp.com/attachments/832803209009561610/844627774672207882/6095715.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844654427612512256/hashirama.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844654428405628999/kakashi.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844654429415145512/madara.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844654441605234729/sasukevsnaruto.gif",
+        "https://cdn.discordapp.com/attachments/832803209009561610/844654449141743636/sasuke.gif"
     ] //Böyle arttırırsın gifleri
     let randomgif = hggif[Math.floor(Math.random() * hggif.length)]
   require("moment-duration-format");
@@ -152,7 +159,7 @@ if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512>  Hesap Durumu: G
       const registerlog = new Discord.MessageEmbed()
     .setColor("#00ffe3")
     .setThumbnail(user.avatarURL({dynamic: true}))
-    .setDescription("**<a:wait:844646078452465666> • Sunucuya hoş geldin\n\n<a:kristal:844646068193198080> <@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:bekleme:844646089805791272>  Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<a:tik:844646041462112326> Hesabın Oluşturulma Tarihi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
+    .setDescription("**<a:wait:844646078452465666>  Sunucuya hoş geldin\n\n<a:kristal:844646068193198080> <@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:bekleme:844646089805791272>  Kayıt olmak için yetkilileri beklemen yeterlidir. \n\n<a:tik:844646041462112326> Hesabın Oluşturulma Tarihi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
     .setImage(randomgif)
     .setTimestamp() 
     .setFooter('SUBASHI') 
@@ -161,7 +168,7 @@ if (kurulus > 1296000000) kontrol = '<:yeey:840247077341888512>  Hesap Durumu: G
   });
 
 
-
+/*
 ///TAG ALANA ROL///
 client.on("userUpdate", async (oldUser, newUser) => {  
   if (oldUser.username !== newUser.username) {
@@ -188,6 +195,7 @@ console.log(`Bir hata oluştu! ${e}`)
 }  
 });
 
+*/
 
 
 client.login(process.env.token)
