@@ -268,19 +268,53 @@ client.on('userUpdate', (oldUser, newUser, message) => {
               
  
 
-
+//-----------------------HOŞ-GELDİN-MESAJI----------------------\\     
 
 client.on("guildMemberAdd", member => {  
-  const kanal = member.guild.channels.cache.find(r => r.id === "809387096284200980"); //HOŞGELDİN MESAJI ATILACAĞI KANAL IDSINI GİRİN ÖRNEĞİN UNREGİSTER CHATİ
-    
-    let user = client.users.cache.get(member.id);
-    require("moment-duration-format");
-      const kurulus = new Date().getTime() - user.createdAt.getTime();  
-  const gecen = moment.duration(kurulus).format(`YY **[Yıl,]** DD **[Gün,]** HH **[Saat,]** mm **[Dakika,]** ss **[Saniye]**`) 
-   
-    var kontrol;
-  if (kurulus < 1296000000) kontrol = 'CARPIEMOJIDSI'
-  if (kurulus > 1296000000) kontrol = 'TIKEMOJİIDSI'
-  moment.locale("tr");
-  kanal.send(":tada: Sunucumuza Hoş Geldin ! <@" + member + "> \n\n Hesabın "+ gecen +" Önce Oluşturulmuş "+kontrol+" \n\n Sunucu kurallarımız <809390200815747092> kanalında belirtilmiştir. Unutma sunucu içerisinde ki ceza işlemlerin kuralları okuduğunu varsayarak gerçekleştirilecek. \n\n Seninle beraber **" + member.guild.memberCount + "** kişi olduk , Tagımızı alarak bizlere destek olabilirsin , Kayıt olmak için teyit odalarına girip ses teyit vermen gerekiyor <@&YETKILIROLID> seninle ilgilenecektir  İyi eğlenceler !")
+    const register = "** <@&838744201927720971> kayıt olmayı bekleyen birisi var! <@" + member + "> **"
+    var üyesayısı = member.guild.members.cache.size.toString().replace(/ /g, "    ")
+    var üs = üyesayısı.match(/([0-9])/g)
+    üyesayısı = üyesayısı.replace(/([a-zA-Z])/g, "bilinmiyor").toLowerCase()
+    if(üs) {
+      üyesayısı = üyesayısı.replace(/([0-9])/g, d => {
+        return {
+'0': `<a:0x:797156909283016754>`,
+'1': `<a:1x:797156909668892682>`,
+'2': `<a:2x:797156909689995305>`,
+'3': `<a:3x:797157222097616926>`,
+'4': `<a:4x:797157222186090534>`,                       
+'5': `<a:5x:797157221325996033>`,
+'6': `<a:6x:797157223020232744>`,
+'7': `<a:7x:797157221486034974>`,
+'8': `<a:8x:797157222198411324>`,
+'9': `<a:9x:797157222434078730>`}[d];
+        })
+      }
+  const kanal = member.guild.channels.cache.find(r => r.id === "839975054385086534"); //kANALID
+  let user = client.users.cache.get(member.id);
+    var hggif = [
+        "https://i.pinimg.com/originals/2c/43/ac/2c43acd8c41ee853cf9fbb04960e4fa6.gif",
+        "https://cdn.discordapp.com/attachments/784443098730201094/830093748457177108/kedi_gif.gif",
+        "https://cdn.discordapp.com/attachments/738105499014135909/773981744226762762/181dd8d229025a4c71a2faf4fa77da7b.gif",
+        "https://ariuscdn.suleymanbal.com.tr/resim/gif/5.gif"
+    ] //Böyle arttırırsın gifleri
+    let randomgif = hggif[Math.floor(Math.random() * hggif.length)]
+  require("moment-duration-format");
+    const kurulus = new Date().getTime() - user.createdAt.getTime();  
+ 
+  var kontrol;
+if (kurulus < 1296000000) kontrol = '<a:rainbow:838755853271564358> • Hesap Durumu: Güvenli Değil! <a:hyir:797147979801821204> **'
+if (kurulus > 1296000000) kontrol = '<a:rainbow:838755853271564358> • Hesap Durumu: Güvenli! <a:onays:797147979797495879> **'
+    moment.locale("tr");
+      const registerlog = new Discord.MessageEmbed()
+    .setColor("#00ffe3")
+    .setThumbnail(user.avatarURL({dynamic: true}))
+    .setDescription("**<a:rainbow:838755853271564358> • Sunucuya hoş geldin\n\n<a:rainbow:838755853271564358> •<@" + member + "> seninle Beraber " + üyesayısı + " Kişiye Ulaştık!\n\n<a:rainbow:838755853271564358> • Ses kanalına girerek kayıt olabilirsin. \n\n<a:rainbow:838755853271564358> • Hesabın Açılış Süresi: " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + kontrol + " **\n")
+    .setImage(randomgif)
+    .setTimestamp() 
+    .setFooter('Erdem Çakıroğlu 💙 Registery') 
+   kanal.send(registerlog)
+   kanal.send(register)   
   });
+
+
